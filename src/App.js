@@ -84,7 +84,7 @@ function App()
         }
 
         for (let file = 0; file < files.length; file++) {
-            if (/[!@#$%^&*+={};:"\\|<>\/?]+/.test(files[file].name)) {
+            if (/[!@#$%^&*+={};:"\\|<>?]+/.test(files[file].name)) {
                 alert(`Invalid Characters in file: ${files[file].name}`);
                 return;
             }
@@ -92,7 +92,7 @@ function App()
         
         } $("#progressBar").show();
 
-        httpRequest.open("post", `http://${ServerIP}/api?act=upload`)
+        httpRequest.open("post", `http://${ServerIP}/api/upload`)
         httpRequest.upload.addEventListener("progress", function(event) {
             let percent = Math.round((event.loaded / event.total) * 100) + "%";
             $("#loader").text("Uploading Files... " + percent);
@@ -104,7 +104,7 @@ function App()
     function fetchFiles() {
         $("#loadingBar").show();
 
-        fetch(`http://${ServerIP}/api?act=getfiles`)
+        fetch(`http://${ServerIP}/api/getfiles`)
         .then((result) => {
             if (result.ok) return result.json();
         })
@@ -138,7 +138,7 @@ function App()
         
         } $("#loadingBar").show();
 
-        fetch(`http://${ServerIP}/api?act=download`, {
+        fetch(`http://${ServerIP}/api/download`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(files),
@@ -167,7 +167,7 @@ function App()
             return;
         }
 
-        fetch(`http://${ServerIP}/api?act=delete`, {
+        fetch(`http://${ServerIP}/api/delete`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(files),
@@ -323,7 +323,7 @@ function App()
 
                                 <div className="d-flex flex-row" style={{gap: "8px"}}>
                                     <button onClick={() => {
-                                        fetch(`http://${ServerIP}/api?act=login`, {
+                                        fetch(`http://${ServerIP}/api/login`, {
                                             method: 'POST',
                                             headers: {'Content-Type': 'application/json'},
                                             body: JSON.stringify({password: document.getElementById("password").value}),

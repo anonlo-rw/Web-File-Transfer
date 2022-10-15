@@ -11,26 +11,25 @@ const apiRouter = express();
 apiRouter.use(require("cors")({origin: '*'}));
 apiRouter.use(express.json());
 
-apiRouter.post("/api", (request, result) => {
-    if (request.query.act == "login") {
-        Login(request, result);
-
-    } else if (request.query.act == "upload") {
-        UploadFiles(request);
-    
-    } else if (request.query.act == "delete") {
-        DeleteFiles(request, result);
-    
-    } else if (request.query.act == "download") {
-        DownloadFiles(request, result);
-    }
+apiRouter.post("/api/login", (request, result) => {
+    Login(request, result);
 });
 
-apiRouter.get("/api", (request, result) =>
-{
-    if (request.query.act == "getfiles") {
-        GetFiles(result);
-    }
+apiRouter.post("/api/upload", (request, result) => {
+    UploadFiles(request);
 });
+
+apiRouter.post("/api/delete", (request, result) => {
+    DeleteFiles(request, result);
+});
+
+apiRouter.post("/api/download", (request, result) => {
+    DownloadFiles(request, result);
+});
+
+apiRouter.get("/api/getfiles", (request, result) => {
+    GetFiles(result);
+});
+
 
 apiRouter.listen(port);
