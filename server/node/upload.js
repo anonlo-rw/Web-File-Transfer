@@ -4,12 +4,10 @@ const fs = require("fs");
 
 const filePath = "../files";
 const thumbnails = "../files/thumbnails";
-const images = ["png", "jpg", "jpeg", "gif"];
 
 function UploadFiles(request)
 {
     let form = new formidable.IncomingForm();
-    let localFiles = [];
     let files = [];
 
     form.on("file", function(field, file) {

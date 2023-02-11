@@ -1,10 +1,13 @@
 function Login(request, result)
 {
-    const attempt = request.body.password;
-    if (attempt === process.env.ACCESS_PASSWORD) {
-        result.send("correct");
-    } else {
-        result.send("Invalid Password, try again");
+    switch (request.body.password)
+    {
+        case process.env.ACCESS_PASSWORD:
+            result.send("correct");
+            break;
+        default:
+            result.send("Invalid Password, try again");
+            break;
     }
 }
 module.exports = { Login }

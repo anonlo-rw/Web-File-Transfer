@@ -6,7 +6,6 @@ const { DownloadFiles } = require("./download");
 const { UploadFiles } = require("./upload");
 const { DeleteFiles } = require("./delete");
 
-const port = process.env.SERVER_PORT;
 const express = require("express");
 const apiRouter = express();
 
@@ -33,4 +32,4 @@ apiRouter.get("/api/getfiles", (request, result) => {
     GetFiles(result);
 });
 
-apiRouter.listen(port);
+apiRouter.listen(process.env.REACT_APP_SERVER_PORT);

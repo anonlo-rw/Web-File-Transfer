@@ -9,7 +9,7 @@ Web File Transfer that gives you the ability to download and upload files to a s
 - Enable Read & Write for Server folder: sudo chmod -R 777 /var/www/html/
 
 # Server Usage
-- node main.js (run server)
+- node server.js
 
 # Client Usage
 - npm install

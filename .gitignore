@@ -3,5 +3,6 @@
 package-lock.json
 .env
 /server/files/*
-!/server/files/beach.jpg
-!/server/files/thumbnails/beach.jpg
+/server/files/thumbnails/*
+!server/files/thumbnails/beach.jpg
+!server/files/thumbnails
