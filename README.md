@@ -1,5 +1,5 @@
 # Web File Transfer
-Web File Transfer that gives you the ability to download and upload files to a server. Frontend written in React.JS and backend PHP.
+Web File Transfer Tool that gives you the ability to download and upload files to a server. Frontend written in React.JS and backend Node.JS (originally PHP).
 
 ![](src/images/example.png)<br/>
 
