@@ -21,7 +21,6 @@ function App()
 
     const paginateData = data.slice(indexOfFirstPost, indexOfLastPost);
     const totalPages = Math.ceil(data.length / entriesPerPage);
-    const ServerIP = window.location.host.split(":")[0];
 
     const paginate = (direction) => {
         if (direction === "left") {
@@ -92,7 +91,7 @@ function App()
         
         } $("#progressBar").show();
 
-        httpRequest.open("post", `http://${ServerIP}/api/upload`)
+        httpRequest.open("post", `${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}/api/upload`)
         httpRequest.upload.addEventListener("progress", function(event) {
             let percent = Math.round((event.loaded / event.total) * 100) + "%";
             $("#loader").text("Uploading Files... " + percent);
@@ -104,7 +103,7 @@ function App()
     function fetchFiles() {
         $("#loadingBar").show();
 
-        fetch(`http://${ServerIP}/api/getfiles`)
+        fetch(`${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}/api/getfiles`)
         .then((result) => {
             if (result.ok) return result.json();
         })
@@ -138,7 +137,7 @@ function App()
         
         } $("#loadingBar").show();
 
-        fetch(`http://${ServerIP}/api/download`, {
+        fetch(`${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}/api/download`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(files),
@@ -167,7 +166,7 @@ function App()
             return;
         }
 
-        fetch(`http://${ServerIP}/api/delete`, {
+        fetch(`${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}/api/delete`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(files),
@@ -323,7 +322,7 @@ function App()
 
                                 <div className="d-flex flex-row" style={{gap: "8px"}}>
                                     <button onClick={() => {
-                                        fetch(`http://${ServerIP}/api/login`, {
+                                        fetch(`${process.env.REACT_APP_SERVER_ADDRESS}:${process.env.REACT_APP_SERVER_PORT}/api/login`, {
                                             method: 'POST',
                                             headers: {'Content-Type': 'application/json'},
                                             body: JSON.stringify({password: document.getElementById("password").value}),

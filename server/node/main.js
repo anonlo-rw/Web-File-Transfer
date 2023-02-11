@@ -1,10 +1,12 @@
+require("dotenv").config({path:"../../.env"});
+
 const { Login } = require("./login");
 const { GetFiles } = require("./getfiles");
 const { DownloadFiles } = require("./download");
 const { UploadFiles } = require("./upload");
 const { DeleteFiles } = require("./delete");
 
-const port = 80;
+const port = process.env.SERVER_PORT;
 const express = require("express");
 const apiRouter = express();
 
@@ -30,6 +32,5 @@ apiRouter.post("/api/download", (request, result) => {
 apiRouter.get("/api/getfiles", (request, result) => {
     GetFiles(result);
 });
-
 
 apiRouter.listen(port);

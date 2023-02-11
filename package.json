@@ -9,8 +9,10 @@
     "adm-zip": "^0.5.9",
     "and": "^0.0.3",
     "bootstrap": "^5.2.2",
+    "concurrently": "^7.6.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
     "express-session": "^1.17.3",
     "formidable": "^2.0.1",
     "jquery": "^3.6.0",
@@ -26,9 +28,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "env-cmd -f .env react-scripts build",
+    "start:staging": "cd src/server/node && concurrently \"node --watch server.js\" \"npm start\""
   },
   "eslintConfig": {
     "extends": [
